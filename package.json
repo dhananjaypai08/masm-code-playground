@@ -1,0 +1,36 @@
+{
+  "name": "miden-app-dj",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "dev:web": "vite --port 3000",
+    "build:web": "tsc && vite build --mode web",
+    "build:tauri": "tsc && vite build --mode tauri && tauri build",
+    "dev:api": "cd src-tauri && cargo run --bin web_server --features web_server",
+    "build:api": "cd src-tauri && cargo build --release --bin web_server --features web_server",
+    "start:api": "cd src-tauri && ./target/release/web_server",
+    "dev:full": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "deploy:railway": "railway deploy",
+    "deploy:docker": "docker build -t miden-vm-api . && docker run -p 3001:3001 miden-vm-api"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-opener": "^2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.3",
+    "@tauri-apps/cli": "^2",
+    "concurrently": "^8.2.2"
+  }
+}
