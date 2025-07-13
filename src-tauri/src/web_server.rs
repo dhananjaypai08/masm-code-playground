@@ -1,4 +1,6 @@
-use crate::client::{ExecutionRequest, ExecutionResult, ProofResult, execute_program_impl, generate_proof_impl};
+use crate::client::{
+    execute_program_impl, generate_proof_impl, ExecutionRequest, ExecutionResult, ProofResult,
+};
 
 #[cfg(feature = "web_server")]
 use axum::{
@@ -34,10 +36,10 @@ pub async fn start_server(port: u16) -> Result<(), Box<dyn std::error::Error>> {
 
     let addr = SocketAddr::from(([0, 0, 0, 0], port));
     println!("🚀 Miden VM API Server starting on http://0.0.0.0:{}", port);
-    
+
     let listener = tokio::net::TcpListener::bind(addr).await?;
     axum::serve(listener, app).await?;
-    
+
     Ok(())
 }
 
@@ -437,7 +439,7 @@ end"#;
         ("Stack Manipulation", "# Leaves [3,3] on the stack\nbegin\n    push.1 push.2 push.3 push.4\n    swap.2\n    drop\n    dup\n    swap.2\n    drop\n    drop\nend"),
         ("Counter with Input", "# Adds 5 to input. Try [\"7\"] → 12\nbegin\n    push.5\n    add\nend"),
     ];
-    
+
     ResponseJson(json!(examples))
 }
 

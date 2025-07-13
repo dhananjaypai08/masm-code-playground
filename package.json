@@ -15,8 +15,8 @@
     "build:api": "cd src-tauri && cargo build --release --bin web_server --features web_server",
     "start:api": "cd src-tauri && ./target/release/web_server",
     "dev:full": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
-    "deploy:railway": "railway deploy",
-    "deploy:docker": "docker build -t miden-vm-api . && docker run -p 3001:3001 miden-vm-api"
+    "cargo:fmt:check": "cd scr-tauri && cargo fmt -- --check",
+    "cargo:fmt": "cd src-tauri && cargo fmt"
   },
   "dependencies": {
     "react": "^18.3.1",

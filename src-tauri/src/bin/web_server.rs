@@ -9,7 +9,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .unwrap_or(3001);
 
     println!("🔧 Starting Miden VM Web API Server on port {}...", port);
-    
+
     miden_app_dj_lib::web_server::start_server(port).await
 }
 
