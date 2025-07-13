@@ -41,7 +41,7 @@ export default defineConfig(async ({ mode }) => {
         },
       },
       build: {
-        outDir: 'dist-web',
+        outDir: 'dist',
         rollupOptions: {
           external: ['@tauri-apps/api/core'],
           output: {
