@@ -421,14 +421,21 @@ begin
 end"#;
 
     let examples = vec![
-        ("Basic Addition", "# Simple addition example\n# Pushes 3 and 5, then adds them\n# Result: 8 on stack top, 3 below it\nbegin\n    push.3\n    push.5\n    add\n    swap\n    drop\nend"),
-        ("Input Stack Demo", "# Demonstrates using input stack values\n# Takes two numbers from input and adds them\n# Try with: [\"10\", \"20\"] → Result: 30\nbegin\n    # Input values are already on stack\n    # Stack: [20, 10] (top to bottom)\n    add\n    # Stack: [30]\nend"),
-        ("Fibonacci Numbers", "# Generates first 8 Fibonacci numbers\n# Uses iterative approach with stack manipulation\n# Result: F(8)=21 on top, previous numbers below\nbegin\n    push.1 push.1  # Start with F(0)=1, F(1)=1\n    push.6         # Generate 6 more numbers\n    repeat.6\n        dup.1      # Duplicate second element\n        add        # Add top two elements\n        swap       # Swap for next iteration\n    end\n    drop           # Remove counter\nend"),
+        ("Basic Addition", "# Adds 3 + 5 = 8\nbegin\n    push.3\n    push.5\n    add\nend"),
+        ("Input Stack Demo", "# Adds two inputs: Try with [\"10\", \"20\"] → 30\nbegin\n    add\nend"),
+        ("Fibonacci Numbers", "# Computes F(8) using repeat loop\n\
+        # Input: { \"operand_stack\": [\"1\"] }\n\
+        begin\n
+        # This code computes 69th Fibonacci number\n
+        repeat.68\n
+            swap dup.1 add\n
+            end\n
+        end"),
         ("Prime Generator", prime_generator),
-        ("Conditional Logic", "# Compares two numbers and keeps the larger one\n# Demonstrates if-else branching\n# Compares 15 and 10, keeps 15\nbegin\n    push.15 push.10  # Stack: [10, 15]\n    dup.1 gt         # Check if 15 > 10\n    if.true\n        swap         # Put larger number on top\n    end\n    drop             # Remove smaller number\nend"),
-        ("Memory Operations", "# Shows memory store and load operations\n# Stores values in memory addresses 0 and 1\n# Then loads and adds them\nbegin\n    # Store 42 at address 0\n    push.42 push.0 mem_store\n    # Store 100 at address 1  \n    push.100 push.1 mem_store\n    # Load both values and add\n    push.0 mem_load    # Load from address 0\n    push.1 mem_load    # Load from address 1\n    add                # 42 + 100 = 142\nend"),
-        ("Stack Manipulation", "# Demonstrates various stack operations\n# Shows dup, swap, drop operations\n# Final result: [3, 3] (duplicate 3s)\nbegin\n    push.1 push.2 push.3 push.4  # Stack: [4,3,2,1]\n    swap.2                       # Swap top with 3rd: [2,3,4,1]\n    drop                         # Remove top: [3,4,1]\n    dup                          # Duplicate top: [3,3,4,1]\n    swap.2                       # Final: [3,3,1,4]\n    drop drop                    # Keep only: [3,3]\nend"),
-        ("Counter with Input", "# Takes input number and adds 5 to it\n# Simple arithmetic with input\n# Try with: [\"7\"] → Result: 12\nbegin\n    # Input value is on stack\n    push.5       # Add 5 to it\n    add          # Perform addition\nend"),
+        ("Conditional Logic", "# Keeps larger of 15 and 10 (result: 15)\nbegin\n    push.15\n    push.10\n    dup.1 gt\n    if.true\n        swap\n    end\n    drop\nend"),
+        ("Memory Operations", "# Stores 42 and 100 in memory, sums them (result: 142)\nbegin\n    push.42 push.0 mem_store\n    push.100 push.1 mem_store\n    push.0 mem_load\n    push.1 mem_load\n    add\nend"),
+        ("Stack Manipulation", "# Leaves [3,3] on the stack\nbegin\n    push.1 push.2 push.3 push.4\n    swap.2\n    drop\n    dup\n    swap.2\n    drop\n    drop\nend"),
+        ("Counter with Input", "# Adds 5 to input. Try [\"7\"] → 12\nbegin\n    push.5\n    add\nend"),
     ];
     
     ResponseJson(json!(examples))

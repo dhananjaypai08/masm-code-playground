@@ -377,7 +377,9 @@ end`);
     setProofResult(null);
     
     // Auto-populate inputs based on example type
-    if (exampleName.includes('Input Stack Demo')) {
+    if (exampleName.includes('Fibonacci')) {
+      setInputs('{\n  "operand_stack": ["1"]\n}');
+    } else if (exampleName.includes('Input Stack Demo')) {
       setInputs('{\n  "operand_stack": ["10", "20"]\n}');
     } else if (exampleName.includes('Counter with Input')) {
       setInputs('{\n  "operand_stack": ["7"]\n}');
@@ -419,7 +421,7 @@ end`);
                 }}
                 value=""
               >
-                <option value="">Load Example...</option>
+                <option value="">Examples</option>
                 {examples.map(([name, _], idx) => (
                   <option key={`${name}-${idx}`} value={name}>{name}</option>
                 ))}

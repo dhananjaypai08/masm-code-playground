@@ -16,7 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({ environment, isConnected = false }) => 
         
         <ul className="navbar-nav">
           <li>
-            <a href="https://github.com/dhananjaypai08">Github</a>
+            <a href="https://github.com/dhananjaypai08/masm-code-playground">Github</a>
           </li>
           <li>
             <a href="https://0xmiden.github.io/miden-vm/user_docs/assembly/main.html" target="_blank" rel="noopener noreferrer">
